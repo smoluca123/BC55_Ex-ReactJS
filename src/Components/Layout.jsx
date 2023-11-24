@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import InfoSV from './InfoSV';
 import FormSV from './FormSV';
@@ -9,12 +9,15 @@ export default function Layout() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const { fetchUsers, deleteUser, addUser, fetchUserById, updateUser } =
     useUsersApi();
 
+  const usersFull = useRef();
   const getUsers = async () => {
     const response = await fetchUsers();
-    setUsers(response);
+    await setUsers(response);
+    usersFull.current = response;
   };
   const handleAddUser = async (user) => {
     await addUser(user);
@@ -42,9 +45,27 @@ export default function Layout() {
     setSelectedUser(null);
     setIsUpdating(false);
   };
+
+  const handleChangeSearchTerm = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  const handleSearch = async () => {
+    if (searchTerm) {
+      const usersFilter = users.filter((user) =>
+        user.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      await setUsers(usersFilter);
+      return;
+    }
+    setUsers(usersFull.current);
+  };
   useEffect(() => {
     getUsers();
   }, []);
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerm]);
+
   return (
     <div>
       <InfoSV />
@@ -59,6 +80,7 @@ export default function Layout() {
         users={users}
         onDelete={handleDeleteUser}
         onGetUser={getInfoSVById}
+        onChangeSearchTerm={handleChangeSearchTerm}
       />
       <Toaster position="top-right" />
     </div>

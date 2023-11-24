@@ -1,10 +1,22 @@
 import React from 'react';
 import SVItem from './SVItem';
 
-export default function TableSV({ users, onDelete, onGetUser }) {
+export default function TableSV({
+  users,
+  onDelete,
+  onGetUser,
+  onChangeSearchTerm,
+}) {
   return (
     <div>
       <div className="table-responsive mt-4 ">
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            onChange={onChangeSearchTerm}
+          />
+        </div>
         <table className="table table-dark">
           <thead>
             <tr>
