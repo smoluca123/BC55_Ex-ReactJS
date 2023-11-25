@@ -4,7 +4,6 @@ import InfoSV from './InfoSV';
 import FormSV from './FormSV';
 import TableSV from './TableSV';
 import useUsersApi from '../Hooks/useUsersApi';
-import { async } from 'q';
 export default function Layout() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -16,8 +15,8 @@ export default function Layout() {
   const usersFull = useRef();
   const getUsers = async () => {
     const response = await fetchUsers();
-    await setUsers(response);
     usersFull.current = response;
+    await setUsers(response);
   };
   const handleAddUser = async (user) => {
     await addUser(user);
@@ -56,8 +55,9 @@ export default function Layout() {
       );
       await setUsers(usersFilter);
       return;
+    } else if (usersFull.current) {
+      setUsers(usersFull.current);
     }
-    setUsers(usersFull.current);
   };
   useEffect(() => {
     getUsers();
