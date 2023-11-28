@@ -66,6 +66,12 @@ export default function FormSV({
       inputValid &= valid[key].status;
     }
     if (!inputValid) return;
+    if (isUpdating) {
+      handleUpdateUser(selectedUser.id, user);
+      setUser({ id: '', fullname: '', phone: '', email: '' });
+      cancelUpdate();
+      return;
+    }
     onAddUser(user);
     setUser({ id: '', fullname: '', phone: '', email: '' });
   };
@@ -156,14 +162,7 @@ export default function FormSV({
         </div>
         {isUpdating ? (
           <>
-            <button
-              className="btn btn-info mt-4"
-              onClick={() => {
-                handleUpdateUser(selectedUser.id, user);
-                setUser({ id: '', fullname: '', phone: '', email: '' });
-                cancelUpdate();
-              }}
-            >
+            <button className="btn btn-info mt-4" type="submit">
               Update
             </button>
 

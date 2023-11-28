@@ -48,12 +48,12 @@ export default function Layout() {
   const handleChangeSearchTerm = (e) => {
     setSearchTerm(e.target.value);
   };
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (searchTerm) {
-      const usersFilter = users.filter((user) =>
+      const usersFilter = usersFull.current.filter((user) =>
         user.fullname.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      await setUsers(usersFilter);
+      setUsers(usersFilter);
       return;
     } else if (usersFull.current) {
       setUsers(usersFull.current);
