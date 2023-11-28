@@ -6,6 +6,7 @@ export default function TableSV({
   onDelete,
   onGetUser,
   onChangeSearchTerm,
+  cancelUpdate,
 }) {
   return (
     <div>
@@ -35,6 +36,7 @@ export default function TableSV({
                 user={user}
                 onDelete={onDelete}
                 onGetUser={onGetUser}
+                cancelUpdate={cancelUpdate}
               />
             ))}
           </tbody>

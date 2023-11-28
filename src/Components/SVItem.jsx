@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SVItem({ user, onDelete, onGetUser }) {
+export default function SVItem({ user, onDelete, onGetUser, cancelUpdate }) {
   const { email, phone, fullname, id } = user;
   return (
     <tr className>
@@ -21,6 +21,7 @@ export default function SVItem({ user, onDelete, onGetUser }) {
           className="btn btn-danger"
           onClick={() => {
             onDelete(id);
+            cancelUpdate();
           }}
         >
           Delete

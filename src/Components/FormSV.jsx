@@ -80,7 +80,9 @@ export default function FormSV({
     if (selectedUser) {
       setUser(selectedUser);
       setValidation(emptyValidation.current);
+      return;
     }
+    setUser({ id: '', fullname: '', phone: '', email: '' });
   }, [selectedUser]);
 
   return (

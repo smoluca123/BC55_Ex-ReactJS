@@ -81,6 +81,7 @@ export default function Layout() {
         onDelete={handleDeleteUser}
         onGetUser={getInfoSVById}
         onChangeSearchTerm={handleChangeSearchTerm}
+        cancelUpdate={cancelUpdate}
       />
       <Toaster position="top-right" />
     </div>
