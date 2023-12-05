@@ -17,6 +17,13 @@ const ticketReducer = createSlice({
         ),
       };
     },
+    removeTicket: (state, action) => {
+      return {
+        selectedTickets: state.selectedTickets.filter(
+          (ticket) => ticket.name !== action.payload.name
+        ),
+      };
+    },
   },
 });
 
