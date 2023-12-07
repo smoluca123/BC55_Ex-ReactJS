@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeTicket } from '../redux/slices/TicketSlice';
 export default function SelectedTicket() {
   const selectedTickets = useSelector((state) => state.tickets.selectedTickets);
+  const totalPrice = useSelector((state) => state.tickets.totalPrice);
   const dispatch = useDispatch();
   const handleRemoveTicket = (ticket) => {
     dispatch(removeTicket(ticket));
@@ -73,9 +74,7 @@ export default function SelectedTicket() {
               </td>
               <td></td>
               <td className="px-6 py-3 text-left text-md font-medium text-title-main uppercase tracking-wider">
-                {selectedTickets.reduce((prev, curr) => {
-                  return prev + curr.price;
-                }, 0)}{' '}
+                {totalPrice}
                 VND
               </td>
             </tr>
