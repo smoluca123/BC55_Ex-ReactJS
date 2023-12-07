@@ -22,19 +22,20 @@ export default function TicketItem({ seat: item }) {
           <button
             key={seat.name}
             className={cn(
-              'text-center text-gray-900 hover:text-title-main hover:bg-gray-900 text-xl font-black bg-white w-[50px] h-[50px] p-2 transition duration-300',
+              'text-center text-gray-900 hover:text-title-main hover:bg-gray-900 text-xl font-black bg-white p-2 transition duration-300',
               {
-                'bg-gray-900 text-lightText-main cursor-not-allowed hover:text-red-500':
+                '!bg-gray-900 text-lightText-main cursor-not-allowed hover:text-red-500':
                   seat.booked,
-                'bg-title-main': isSelected,
+                '!bg-title-main hover:!text-lightText-main': isSelected,
               }
             )}
             disabled={seat.booked}
             onClick={() => {
-              handleSelect({
-                ...item.seats[index],
-                isSelected: !isSelected,
-              });
+              !seat.booked &&
+                handleSelect({
+                  ...item.seats[index],
+                  isSelected: !isSelected,
+                });
             }}
           >
             {seat.name}

@@ -27,5 +27,5 @@ const ticketReducer = createSlice({
   },
 });
 
-export const { selectedTicket } = ticketReducer.actions;
+export const { selectedTicket, removeTicket } = ticketReducer.actions;
 export default ticketReducer.reducer;

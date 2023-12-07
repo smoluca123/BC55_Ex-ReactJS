@@ -19,7 +19,7 @@ export default function TicketList() {
       ></div>
       <div className="-mt-4 h-5 !shadow-custom1 !shadow-title-main"></div>
 
-      <div className="grid grid-cols-[repeat(13,_1fr)] gap-4">
+      <div className="grid grid-cols-[repeat(13,_1fr)] gap-4 h-full">
         <div className=""></div>
         {pointer.map((item) => (
           <div key={item}>
