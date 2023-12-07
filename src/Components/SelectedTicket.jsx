@@ -54,11 +54,13 @@ export default function SelectedTicket() {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div
-                  className="text-lg font-medium text-red-500 cursor-pointer"
-                  onClick={() => handleRemoveTicket(item)}
-                >
-                  <i class="fa fa-times" aria-hidden="true"></i>
+                <div className="text-lg font-medium text-red-500">
+                  <button
+                    className="px-2"
+                    onClick={() => handleRemoveTicket(item)}
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
                 </div>
               </td>
             </tr>
@@ -73,7 +75,8 @@ export default function SelectedTicket() {
               <td className="px-6 py-3 text-left text-md font-medium text-title-main uppercase tracking-wider">
                 {selectedTickets.reduce((prev, curr) => {
                   return prev + curr.price;
-                }, 0)}
+                }, 0)}{' '}
+                VND
               </td>
             </tr>
           )}
